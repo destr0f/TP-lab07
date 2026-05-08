@@ -12,20 +12,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: Configure
-        run: cmake -S ${{ github.workspace }} -B ${{ github.workspace }}/_build -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/_install
+        run: cmake -S . -B _build -DBUILD_TESTS=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
       - name: Build
-        run: cmake --build ${{ github.workspace }}/_build
+        run: cmake --build _build
 
-      - name: Install
-        run: cmake --build ${{ github.workspace }}/_build --target install
-
-      - name: Run example1
-        run: ${{ github.workspace }}/_build/example1
-
-      - name: Run example2
-        run: |
-          ${{ github.workspace }}/_build/example2
-          cat log.txt
+      - name: Test
+        run: cmake --build _build --target test -- ARGS=--verbose
