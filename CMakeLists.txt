@@ -26,16 +26,6 @@ add_executable(example2
 target_link_libraries(example1 print)
 target_link_libraries(example2 print)
 
-install(TARGETS print example1 example2
-    RUNTIME DESTINATION bin
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-)
-
-install(DIRECTORY include/
-    DESTINATION include
-)
-
 if(BUILD_TESTS)
     enable_testing()
     add_subdirectory(third-party/gtest)
