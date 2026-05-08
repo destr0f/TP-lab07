@@ -16,7 +16,7 @@ jobs:
           submodules: true
 
       - name: Configure
-        run: cmake -S . -B _build -DBUILD_TESTS=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+        run: cmake -S . -B _build -DBUILD_TESTS=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_CXX_FLAGS="-Wno-error=maybe-uninitialized"
 
       - name: Build
         run: cmake --build _build
