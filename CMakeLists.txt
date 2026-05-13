@@ -5,6 +5,7 @@ include("cmake/HunterGate.cmake")
 HunterGate(
   URL "https://github.com/cpp-pm/hunter/archive/v0.23.251.tar.gz"
   SHA1 "5659b15dc0884d4b03dbd95710e6a1fa0fc3258d"
+  LOCAL
 )
 
 project(print)
@@ -37,4 +38,8 @@ endif()
 add_executable(demo demo/main.cpp)
 target_link_libraries(demo print)
 
-install(TARGETS demo RUNTIME DESTINATION bin)
+hunter_add_package(timp_message)
+find_package(timp_message CONFIG REQUIRED)
+
+add_executable(custom_package_demo custom_package_demo/main.cpp)
+target_link_libraries(custom_package_demo timp_message::timp_message)

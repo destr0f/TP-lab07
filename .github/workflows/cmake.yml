@@ -29,3 +29,6 @@ jobs:
         run: |
           echo "hello hunter" | LOG_PATH=demo_log.txt ./_builds/demo
           cat demo_log.txt
+
+      - name: Run custom package demo
+        run: ./_builds/custom_package_demo
