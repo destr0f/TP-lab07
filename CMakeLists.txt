@@ -14,21 +14,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(BUILD_TESTS "Build tests" OFF)
 
-add_library(print STATIC
-  sources/print.cpp
-)
+add_library(print STATIC sources/print.cpp)
+target_include_directories(print PUBLIC include)
 
-target_include_directories(print PUBLIC
-  include
-)
-
-add_executable(example1
-  examples/example1.cpp
-)
-
-add_executable(example2
-  examples/example2.cpp
-)
+add_executable(example1 examples/example1.cpp)
+add_executable(example2 examples/example2.cpp)
 
 target_link_libraries(example1 print)
 target_link_libraries(example2 print)
@@ -39,19 +29,12 @@ if(BUILD_TESTS)
 
   enable_testing()
 
-  add_executable(check
-    tests/test1.cpp
-  )
-
+  add_executable(check tests/test1.cpp)
   target_link_libraries(check print GTest::gtest_main)
-
   add_test(NAME check COMMAND check)
 endif()
 
 add_executable(demo demo/main.cpp)
-
 target_link_libraries(demo print)
 
-install(TARGETS demo
-  RUNTIME DESTINATION bin
-)
+install(TARGETS demo RUNTIME DESTINATION bin)
