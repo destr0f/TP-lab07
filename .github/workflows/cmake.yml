@@ -6,20 +6,26 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  CMAKE_POLICY_VERSION_MINIMUM: "3.5"
+
 jobs:
   build_Linux:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: true
 
       - name: Configure
-        run: cmake -S . -B _build -DBUILD_TESTS=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_CXX_FLAGS="-Wno-error=maybe-uninitialized"
+        run: cmake -S . -B _builds -DBUILD_TESTS=ON
 
       - name: Build
-        run: cmake --build _build
+        run: cmake --build _builds
 
       - name: Test
-        run: cmake --build _build --target test -- ARGS=--verbose
+        run: cmake --build _builds --target test
+
+      - name: Run demo
+        run: |
+          echo "hello hunter" | LOG_PATH=demo_log.txt ./_builds/demo
+          cat demo_log.txt

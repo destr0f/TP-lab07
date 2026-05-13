@@ -3,3 +3,6 @@
 *.swp
 .idea/
 file.txt
+_builds/
+demo_log.txt
+file.txt

@@ -1,23 +1,23 @@
-# TP-lab05
+# TP-lab07
 
-Лабораторная работа №5 по ТиМП.
+Лабораторная работа №7 по ТиМП.
 
 ## Описание
 
-Проект содержит простую функцию `print`.
+Проект изучает Hunter — пакетный менеджер для CMake.
 
-Сборка выполняется через CMake.
+Библиотека `print` собирается через CMake.
 
-Тесты написаны с использованием GoogleTest.
+Тесты используют GoogleTest, который подключается через Hunter.
 
-Автоматическая проверка сборки и тестов настроена через GitHub Actions.
+Также добавлено приложение `demo`.
 
 ## Структура проекта
 
 - `include/` — заголовочные файлы
 - `sources/` — исходные файлы
-- `examples/` — примеры использования
+- `examples/` — примеры
 - `tests/` — тесты
-- `third-party/gtest` — GoogleTest
-- `CMakeLists.txt` — файл сборки CMake
-- `.github/workflows/cmake.yml` — workflow GitHub Actions
+- `demo/` — demo-приложение
+- `cmake/HunterGate.cmake` — подключение Hunter
+- `CMakeLists.txt` — сборка проекта
